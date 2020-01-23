@@ -95,9 +95,3 @@ const FormikNewUserForm = withFormik ({
 })(NewUserForm);
 
 export default FormikNewUserForm;
-
-// Name
-//  Email
-//  Password
-//  Terms of Service (checkbox)
-//  A Submit button to send our form data to the server.
