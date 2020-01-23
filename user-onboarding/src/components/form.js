@@ -50,10 +50,18 @@ const NewUserForm = ({ errors, touched, values, status }) => {
                 <button type="submit">Submit</button>
 
             </Form>
-        </div>
-    )
 
-}
+            {userInfo.map(user => (
+                <ul>
+                    <li>Name: {user.name}</li>
+                    <li>E-mail: {user.email}</li>
+                    <li>Password: {user.password}</li>
+                </ul>
+            ))}
+        </div>
+    );
+
+};
 
 export default NewUserForm;
 
