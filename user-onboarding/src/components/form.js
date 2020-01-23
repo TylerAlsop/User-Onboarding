@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react';
-import { Form, Field, withFomrik } from 'formik';
+import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
@@ -80,8 +80,19 @@ const FormikNewUserForm = withFormik ({
         terms: Yup.string().required("This is a required field")
     }),
 
-    
-})
+    handleSubmit (values, { setStatus, resetForm }) {
+        console.log("Submitting Form:", values);
+
+        axios
+            .post ("https://reqres.in/api/users")
+            .then (res => {
+                console.log("Success:", res);
+                setStatus(res.data)
+                resetForm();
+            })
+            .catch(err => console.log("Error", err));
+    }
+})(NewUserForm);
 
 export default FormikNewUserForm;
 
