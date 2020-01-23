@@ -63,7 +63,27 @@ const NewUserForm = ({ errors, touched, values, status }) => {
 
 };
 
-export default NewUserForm;
+const FormikNewUserForm = withFormik ({
+    mapPropsToValues ({ name }) {
+        return {
+            name: "",
+            email: "",
+            password: "",
+            terms: false
+        };
+    },
+
+    validationSchema: Yup.object().shape({
+        name: Yup.string().required("This is a required field"),
+        email: Yup.string().required("This is a required field"),
+        password: Yup.string().required("This is a required field"),
+        terms: Yup.string().required("This is a required field")
+    }),
+
+    
+})
+
+export default FormikNewUserForm;
 
 // Name
 //  Email
