@@ -6,4 +6,10 @@ import axios from 'axios';
 const Form = ({ errors, touched, values, status }) => {
     const [userInfo, setUserInfo] = useState ([]);
 
+    useEffect (() => {
+        status && setUserInfo (userInfo => [...userInfo, status]);
+    }, [status])
+
 }
+
+export default Form;
