@@ -7,7 +7,7 @@ const NewUserForm = ({ errors, touched, values, status }) => {
     const [userInfo, setUserInfo] = useState ([]);
 
     useEffect (() => {
-        status && setUserInfo (userInfo => [...userInfo, status]);
+        status && setUserInfo (users => [...users, status]);
     }, [status])
 
     return (
@@ -55,11 +55,11 @@ const NewUserForm = ({ errors, touched, values, status }) => {
 
             </Form>
 
-            {userInfo.map(user => (
+            {userInfo.map(userInfo => (
                 <ul>
-                    <li>Name: {user.name}</li>
-                    <li>E-mail: {user.email}</li>
-                    <li>Password: {user.password}</li>
+                    <li>Name: {userInfo.name}</li>
+                    <li>E-mail: {userInfo.email}</li>
+                    <li>Password: {userInfo.password}</li>
                 </ul>
             ))}
         </div>
@@ -81,14 +81,14 @@ const FormikNewUserForm = withFormik ({
         name: Yup.string().required("This is a required field"),
         email: Yup.string().required("This is a required field"),
         password: Yup.string().required("This is a required field"),
-        terms: Yup.string().required("This is a required field")
+        terms: Yup.bool().required("This is a required field")
     }),
 
     handleSubmit (values, { setStatus, resetForm }) {
         console.log("Submitting Form:", values);
 
         axios
-            .post ("https://reqres.in/api/users")
+            .post ("https://reqres.in/api/users", values)
             .then (res => {
                 console.log("Success:", res);
                 setStatus(res.data)
