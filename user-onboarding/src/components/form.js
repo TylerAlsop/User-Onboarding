@@ -33,6 +33,27 @@ const NewUserForm = ({ errors, touched, values, status }) => {
                 />
                 {touched.email && errors.email && <p>{errors.email}</p>}
 
+                <p>Role:</p>
+                <Field component="select" name="role" value={values.role}>
+                    <option>Choose an option</option>
+                    <option>Section Lead</option>
+                    <option>Team Lead</option>
+                    <option>Front End Dev</option>
+                    <option>Back End Dev</option>
+                    <option>Mascot</option>
+                    <option>Intern</option>
+                </Field>
+                {touched.role && errors.role && <p>{errors.role}</p>}
+
+                <p>About:</p>
+                <Field 
+                    component="textarea"
+                    name="about"
+                    placeholer="Tell us about yourself"
+                    value={values.about}
+                />
+                {touched.about && errors.about && <p>{errors.about}</p>}
+
                 <p>Password:</p>
                 <Field 
                     type="text"
@@ -57,6 +78,8 @@ const NewUserForm = ({ errors, touched, values, status }) => {
                 <ul>
                     <li>Name: {userInfo.name}</li>
                     <li>E-mail: {userInfo.email}</li>
+                    <li>Role: {userInfo.role}</li>
+                    <li>About: {userInfo.about}</li>
                 </ul>
             ))}
 
@@ -69,10 +92,12 @@ const NewUserForm = ({ errors, touched, values, status }) => {
 };
 
 const FormikNewUserForm = withFormik ({
-    mapPropsToValues ({ name }) {
+    mapPropsToValues ({ }) {
         return {
-            name: name || "",
+            name: "",
             email: "",
+            about: "",
+            role: "",
             password: "",
             terms: false
         };
@@ -81,6 +106,8 @@ const FormikNewUserForm = withFormik ({
     validationSchema: Yup.object().shape({
         name: Yup.string().required("This is a required field"),
         email: Yup.string().required("This is a required field"),
+        role: Yup.string().oneOf(["Section Lead", "Team Lead", "Front End Dev", "Back End Dev", "Mascot", "Intern"]).required("This is a required field"),
+        about: Yup.string().required("This is a required field"),
         password: Yup.string().min(8, 'Password must be at least 8 characters long, include at least one number, one letter, one symbol, a pie flavor, you mothers maiden name, and promise to stay in touch even after leaving your hometown').required("This is a required field"),
         terms: Yup.bool().required("This is a required field")
     }),
