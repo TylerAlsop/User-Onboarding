@@ -59,7 +59,6 @@ const NewUserForm = ({ errors, touched, values, status }) => {
                 <ul>
                     <li>Name: {userInfo.name}</li>
                     <li>E-mail: {userInfo.email}</li>
-                    <li>Password: {userInfo.password}</li>
                 </ul>
             ))}
         </div>
@@ -70,7 +69,7 @@ const NewUserForm = ({ errors, touched, values, status }) => {
 const FormikNewUserForm = withFormik ({
     mapPropsToValues ({ name }) {
         return {
-            name: "",
+            name: name || "",
             email: "",
             password: "",
             terms: false
@@ -94,7 +93,7 @@ const FormikNewUserForm = withFormik ({
                 setStatus(res.data)
                 resetForm();
             })
-            .catch(err => console.log("Error", err));
+            .catch(err => console.log("Error", err.response));
     }
 })(NewUserForm);
 
