@@ -15,6 +15,7 @@ const NewUserForm = ({ errors, touched, values, status }) => {
             <Form>
                 <h1>New User Form</h1>
 
+                <p>Name:</p>
                 <Field 
                     type="text"
                     name="name"
@@ -23,6 +24,7 @@ const NewUserForm = ({ errors, touched, values, status }) => {
                 />
                 {touched.name && errors.name && <p>{errors.name}</p>}
 
+                <p>E-mail:</p>
                 <Field 
                     type="text"
                     name="email"
@@ -31,6 +33,7 @@ const NewUserForm = ({ errors, touched, values, status }) => {
                 />
                 {touched.email && errors.email && <p>{errors.email}</p>}
 
+                <p>Password:</p>
                 <Field 
                     type="text"
                     name="password"
@@ -39,7 +42,7 @@ const NewUserForm = ({ errors, touched, values, status }) => {
                 />
                 {touched.password && errors.password && <p>{errors.password}</p>}
 
-                <label className="checkbox-container">
+                <label>
                     <p>Agree to Terms of Service</p>
                     <Field 
                         type="checkbox"
