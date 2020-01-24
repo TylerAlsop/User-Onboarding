@@ -53,14 +53,16 @@ const NewUserForm = ({ errors, touched, values, status }) => {
 
                 <button type="submit">Submit</button>
 
-            </Form>
-
-            {userInfo.map(userInfo => (
+                {userInfo.map(userInfo => (
                 <ul>
                     <li>Name: {userInfo.name}</li>
                     <li>E-mail: {userInfo.email}</li>
                 </ul>
             ))}
+
+            </Form>
+
+            
         </div>
     );
 
