@@ -79,7 +79,7 @@ const FormikNewUserForm = withFormik ({
     validationSchema: Yup.object().shape({
         name: Yup.string().required("This is a required field"),
         email: Yup.string().required("This is a required field"),
-        password: Yup.string().required("This is a required field"),
+        password: Yup.string().min(8, 'Password must be at least 8 characters long, include at least one number, one letter, one symbol, a pie flavor, you mothers maiden name, and promise to stay in touch even after leaving your hometown').required("This is a required field"),
         terms: Yup.bool().required("This is a required field")
     }),
 
