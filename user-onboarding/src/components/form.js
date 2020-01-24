@@ -39,7 +39,7 @@ const NewUserForm = ({ errors, touched, values, status }) => {
                 />
                 {touched.password && errors.password && <p>{errors.password}</p>}
 
-                <label className="check-box-field">
+                <label className="checkbox-container">
                     <p>Agree to Terms of Service</p>
                     <Field 
                         type="checkbox"
